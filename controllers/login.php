@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 					   'isManager' =>  $this->users->isManager($user),
 					   'email' =>  $userinfo[0]->EMAIL,
 					   'currentUser' =>  $user,
-					   'currentManager' =>  FALSE,
+					   'currentManager' =>  $this->users->isManager($user),
 					   'logged_in' => TRUE
 				   );
 	
