@@ -14,7 +14,7 @@ $(document).ready(function()
 			url:'<?=site_url('invoiceHistory/ajaxGridByAccount/'.$accountid)?>',      //another controller function for generating XML data
 			mtype : "post",             //Ajax request type. It also could be GET
 			datatype: "xml",            //supported formats XML, JSON or Arrray
-			colNames:['Number', 'Invoiced', 'Type', 'PO Number', 'Due Date', 'Order Date', 'Net Invoice'],       //Grid column headings
+			colNames:['Number', 'Invoiced', 'Type', 'PO Number', 'Due Date', 'Order Date', 'Total'],       //Grid column headings
 			colModel:[
 				{name:'Number',index:'INVOICE_NUMBER', width:'100'},
 				{name:'Invoiced',index:'INVOICE_DATE', width:'90', align:'center', search:true},
@@ -22,7 +22,7 @@ $(document).ready(function()
 				{name:'PO',index:'PO_NUMBER', width:'150', search:true},
 				{name:'Due',index:'DUE_DATE', width:'90', align:'center', search:true},
 				{name:'Order',index:'ORDER_DATE', width:'90', align:'center', search:true},
-				{name:'Net Invoice',index:'NET_INVOICE', width:'90', align:'center', search:false}
+				{name:'Total',index:'NET_INVOICE', width:'90', align:'center', search:false}
 			],
 			rowNum:100,
 			width: 1000,

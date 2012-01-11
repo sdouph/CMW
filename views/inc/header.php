@@ -31,7 +31,15 @@ $(document).ready(function()
 
 <body bgcolor="#FFFFFF">
 <div id="logo"></div>
-<div id="userInfo"><?=$this->session->userdata['usernameFull']?><img src="<?=base_url()?>assets/images/divider.gif" class="navItems"/><img src="<?=base_url()?>assets/images/settings_grey_32.png" width="16px" height="16px" class="navItems" /><img src="<?=base_url()?>assets/images/divider.gif" class="navItems" /><?=anchor('logout', 'Logout', 'title="Logout of CRM"')?></div>
+<div id="userInfo"><?=$this->session->userdata['usernameFull']?><?php
+
+if ($isManager){
+	echo '<ul>';
+	
+	
+	echo '</ul>';
+}
+?><img src="<?=base_url()?>assets/images/divider.gif" class="navItems"/><img src="<?=base_url()?>assets/images/settings_grey_32.png" width="16px" height="16px" class="navItems" /><img src="<?=base_url()?>assets/images/divider.gif" class="navItems" /><?=anchor('logout', 'Logout', 'title="Logout of CRM"')?></div>
 <div id="search"><form method="post" action="<?=site_url('custom')?>"><!--<input id="search_field" type="text"  width="300"/><input id="search_btn" type="submit" value="Search" />--></form></div>
 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

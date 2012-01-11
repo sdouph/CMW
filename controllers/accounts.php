@@ -111,6 +111,7 @@ class Accounts extends CI_Controller {
 			echo "<cell><![CDATA[".$row['TYPE']."]]></cell>";
 			echo "<cell><![CDATA[".phone_format($row['MAINPHONE'])."]]></cell>";
 			echo "<cell><![CDATA[".mailto($row['EMAIL'])."]]></cell>";
+			echo "<cell><![CDATA[<a href='http://maps.google.com/maps?q=".urlencode($row['ADDRESS1'].', '.$row['CITY'].', '.$row['STATE'].', '.$row['POSTALCODE'])."' target='blank'>".$row['CITY'].", ".$row['STATE']."</a>]]></cell>";
 			echo "<cell><![CDATA[".$row['SECCODEDESC']."]]></cell>";
 			echo "</row>";
 		}

@@ -113,6 +113,7 @@ class OrderOpen extends CI_Controller {
 			echo "<row id='".$row['DL_ORDER_HEADID']."'>";
 			echo "<cell><![CDATA[".$row['ORDER_NUMBER']."]]></cell>";
 			echo "<cell><![CDATA[".mssql_date_fix($row['ORDER_DATE'])."]]></cell>";
+			echo "<cell><![CDATA[".$row['ACCOUNT']."]]></cell>";
 			echo "<cell><![CDATA[".$row['ORDER_TYPE']."]]></cell>";
 			echo "<cell><![CDATA[".just_clean($row['CONFIRM_TO'])."]]></cell>";
 			echo "<cell><![CDATA[".just_clean($row['ORDER_COMMENT'])."]]></cell>";

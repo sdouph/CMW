@@ -6,8 +6,16 @@
 	<a href="javascript:void(0);" onclick="printReport()" id="reportPrint" title="Print Report">Print</a>
 	
 </div>
-   <label>Start Date</label><input id="startDate" name="startDate" value="<?=mdate('%Y-%m-%d', mktime(0,0,0,1,1, date("Y")))?>" />
-    <label>End Date</label><input id="endDate" name="endDate" value="<?=mdate('%Y-%m-%d')?>" />
+    <label style="margin-left: 20px">Date Range</label>
+    <select id="dateRange" name="dateRange">
+        <option value="lastYear" selected="selected">Last Year</option>
+        <option value="lastMonth">Last Month</option>
+        <option value="custom">Custom</option>
+    </select>
+   <div id="specificDate" style="display:none">
+        <label>Start Date</label><input id="startDate" name="startDate" value="<?=mdate('%Y-%m-%d', mktime(0,0,0,1,1, date("Y")))?>" />
+        <label>End Date</label><input id="endDate" name="endDate" value="<?=mdate('%Y-%m-%d')?>" />
+   </div>
  <label style="margin-left: 175px">Select Report</label><select id="reportType" name="reportType">
   <option value="productSales" selected="selected">Product Sales Report</option>
   <option value="customer">Customer Report</option>

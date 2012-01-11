@@ -13,16 +13,16 @@ $(document).ready(function()
 			url:'<?=site_url('invoiceOpen/ajaxGrid/')?>',      //another controller function for generating XML data
 			mtype : "post",             //Ajax request type. It also could be GET
 			datatype: "xml",            //supported formats XML, JSON or Arrray
-			colNames:['Number', 'PO Number','Invoiced', 'Due', 'Discount', 'Amount', 'Balance', 'Comment'],       //Grid column headings
+			colNames:['Number', 'Account', 'PO Number','Invoiced', 'Due', 'Discount', 'Amount', 'Balance'],       //Grid column headings
 			colModel:[
-				{name:'Number',index:'INVOICE_NUMBER', width:'100'},
+				{name:'Number',index:'INVOICE_NUMBER', width:'75'},
+				{name:'Account',index:'ACCOUNT', width:'200'},
 				{name:'PO',index:'PO_NUMBER', width:'150'},
 				{name:'Invoiced',index:'INVOICE_DATE', width:'90', align:'center'},
 				{name:'Due',index:'DUE_DATE', width:'90', align:'center'},
 				{name:'Discount', width:'90', align:'center', search:false},
 				{name:'Amount',index:'INVOICE_AMT', width:'90', align:'center', search:false},
 				{name:'Balance',index:'INVOICE_BAL', width:'90', align:'center', search:false},
-				{name:'Comment',index:'INV_COMMENT', search:false}
 			],
 			rowNum:100,
 			width: 1000,
@@ -41,6 +41,7 @@ $(document).ready(function()
 				onClickButton:function(){
 					$("#openInvoiceList")[0].clearToolbar();
 					$("#gs_Number").val('');
+					$("#gs_Account").val('');
 					$("#gs_PO").val('');
 					$("#gs_Invoiced").val('');
 					$("#gs_Due").val('');

@@ -88,6 +88,10 @@
 </table>
 <table width="250px" border="0" align="right" style="margin-right:60px">
 	<tr>
+        <td align="right"><label>Net</label></td>
+        <td align="right"><?=dollar_format($invoiceHeader->NET_INVOICE)?></td>
+  </tr>
+	<tr>
         <td align="right"><label>Discount</label></td>
         <td align="right"><?=dollar_format($invoiceHeader->DISCOUNT_AMT)?></td>
   </tr>
@@ -100,8 +104,8 @@
         <td align="right"><?=dollar_format($invoiceHeader->SALES_TAX)?></td>
   </tr>
 	<tr>
-        <td align="right"><label>Net</label></td>
-        <td align="right" style="font-weight:bold"><?=dollar_format($invoiceHeader->NET_INVOICE)?></td>
+        <td align="right"><label>Total</label></td>
+        <td align="right" style="font-weight:bold"><?=dollar_format($invoiceHeader->NET_INVOICE + $invoiceHeader->SALES_TAX + $invoiceHeader->FREIGHT_AMT - $invoiceHeader->DISCOUNT_AMT)?></td>
   </tr>
   </table>
 <br /><br /><br />

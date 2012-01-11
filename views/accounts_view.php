@@ -11,12 +11,13 @@ $(document).ready(function()
 			url:'<?=site_url('accounts/ajaxGrid/')?>',      //another controller function for generating XML data
 			mtype : "post",             //Ajax request type. It also could be GET
 			datatype: "xml",            //supported formats XML, JSON or Arrray
-			colNames:['Account','Type', 'Main Phone', 'Email'<?=($isManager) ? ", 'Owner'" : ""?>],       //Grid column headings
+			colNames:['Account','Type', 'Main Phone', 'Email', 'City'<?=($isManager) ? ", 'Owner'" : ""?>],       //Grid column headings
 			colModel:[
-			{name:'Account',index:'ACCOUNT'},
-			{name:'Type',index:'TYPE', width:'90', align:'center',  stype:'select', searchoptions:{"value":":All;Customer:Customer;Prospect:Prospect"}},
+			{name:'Account',index:'ACCOUNT', width:'175'},
+			{name:'Type',index:'TYPE', width:'60', align:'center',  stype:'select', searchoptions:{"value":":All;Customer:Customer;Prospect:Prospect"}},
 			{name:'MainPhone',index:'MAINPHONE', width:'90', align:'center'},
-			{name:'Email',index:'EMAIL'}
+			{name:'Email',index:'EMAIL'},
+			{name:'City',index:'CITY', width:'100'}
 			<?=($isManager) ? ", {name:'Owner',index:'SECCODEDESC'}" : ""?>
 			],
 			rowNum:100,
@@ -37,6 +38,7 @@ $(document).ready(function()
 					$("#gs_Account").val('');
 					$("#gs_MainPhone").val('');
 					$("#gs_Email").val('');
+					$("#gs_City").val('');
 					<?=($isManager) ? '$("#gs_Owner").val("");' : ''?>
 				} 
 			});

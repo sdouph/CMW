@@ -123,7 +123,7 @@ class InvoiceHistory extends CI_Controller {
 			echo "<cell><![CDATA[".$row['PO_NUMBER']."]]></cell>";
 			echo "<cell><![CDATA[".mssql_date_fix($row['DUE_DATE'])."]]></cell>";
 			echo "<cell><![CDATA[".mssql_date_fix($row['ORDER_DATE'])."]]></cell>";
-			echo "<cell><![CDATA[".dollar_format($row['NET_INVOICE'])."]]></cell>";
+			echo "<cell><![CDATA[".dollar_format($row['NET_INVOICE'] + $row['SALES_TAX'] + $row['FREIGHT_AMT'] - $row['DISCOUNT_AMT'])."]]></cell>";
 			echo "</row>";
 		}
 		echo "</rows>";

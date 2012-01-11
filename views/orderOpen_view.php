@@ -13,10 +13,11 @@ $(document).ready(function()
 			url:'<?=site_url('orderOpen/ajaxGrid/')?>',      //another controller function for generating XML data
 			mtype : "post",             //Ajax request type. It also could be GET
 			datatype: "xml",            //supported formats XML, JSON or Arrray
-			colNames:['Number', 'Date','Type', 'Confirm To', 'Comment', 'Total', 'Balance'],       //Grid column headings
+			colNames:['Number', 'Date','Account','Type', 'Confirm To', 'Comment', 'Total', 'Balance'],       //Grid column headings
 			colModel:[
-				{name:'Number',index:'ORDER_NUMBER', width:'100'},
+				{name:'Number',index:'ORDER_NUMBER', width:'75'},
 				{name:'Date',index:'ORDER_DATE', width:'90', align:'center'},
+				{name:'Account',index:'ACCOUNT', search:true},
 				{name:'Type',index:'ORDER_TYPE', width:'100',  stype:'select', searchoptions:{"value":":All;Standard:Standard;Quote:Quote;Back Order:Back Order"}},
 				{name:'Confirm',index:'CONFIRM_TO', width:'90', align:'center', search:true},
 				{name:'Comment',index:'ORDER_COMMENT', search:true},
@@ -39,6 +40,7 @@ $(document).ready(function()
 					$("#openOrderList")[0].clearToolbar();
 					$("#gs_Date").val('');
 					$("#gs_Number").val('');
+					$("#gs_Account").val('');
 					$("#gs_Type").val('');
 					$("#gs_Confirm").val('');
 					$("#gs_TComment").val('');

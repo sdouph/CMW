@@ -112,13 +112,13 @@ class InvoiceOpen extends CI_Controller {
 		foreach($result as $row) {
 			echo "<row id='".$row['INVOICE_NUMBER']."'>";
 			echo "<cell><![CDATA[".$row['INVOICE_NUMBER']."]]></cell>";
+			echo "<cell><![CDATA[".$row['ACCOUNT']."]]></cell>";
 			echo "<cell><![CDATA[".$row['PO_NUMBER']."]]></cell>";
 			echo "<cell><![CDATA[".mssql_date_fix($row['INVOICE_DATE'])."]]></cell>";
 			echo "<cell><![CDATA[".mssql_date_fix($row['DUE_DATE'])."]]></cell>";
 			echo "<cell><![CDATA[".mssql_date_fix($row['DISCOUNT_DATE'])."]]></cell>";
 			echo "<cell><![CDATA[".dollar_format($row['INVOICE_AMT'])."]]></cell>";
 			echo "<cell><![CDATA[".dollar_format($row['INVOICE_BAL'])."]]></cell>";
-			echo "<cell><![CDATA[".just_clean($row['INV_COMMENT'])."]]></cell>";
 			echo "</row>";
 		}
 		echo "</rows>";

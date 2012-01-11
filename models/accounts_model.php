@@ -58,9 +58,9 @@
 		   $end = $start + $limit; 
 
 		if ($isManager){
-		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID) temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
+		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC, d.ADDRESS1, d.CITY, d.STATE, d.POSTALCODE FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID JOIN sysdba.ADDRESS d ON a.ADDRESSID = d.ADDRESSID) temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
 		}else{
-		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID WHERE ACCOUNTMANAGERID = '".$user."') temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
+		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC, d.ADDRESS1, d.CITY, d.STATE, d.POSTALCODE FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID JOIN sysdba.ADDRESS d ON a.ADDRESSID = d.ADDRESSID WHERE ACCOUNTMANAGERID = '".$user."') temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
 		}
 		
 		return $query->result_array();
@@ -87,9 +87,9 @@
 		   $end = $start + $limit; 
 
 		if ($isManager){
-		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID WHERE ACCOUNTMANAGERID <> '' ".$s.") temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
+		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC, d.ADDRESS1, d.CITY, d.STATE, d.POSTALCODE FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID JOIN sysdba.ADDRESS d ON a.ADDRESSID = d.ADDRESSID WHERE ACCOUNTMANAGERID <> '' ".$s.") temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
 		}else{
-		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID WHERE ACCOUNTMANAGERID = '".$user."' ".$s.") temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
+		    $query = $this->db->query("SELECT temp2.* FROM (SELECT ROW_NUMBER() OVER(ORDER BY ".$idx." ".$ord.") AS 'ROWNUM', temp1.* FROM(SELECT a.*, s.SECCODEDESC, d.ADDRESS1, d.CITY, d.STATE, d.POSTALCODE FROM sysdba.ACCOUNT a JOIN sysdba.SECCODE s ON a.SECCODEID = s.SECCODEID JOIN sysdba.ADDRESS d ON a.ADDRESSID = d.ADDRESSID WHERE ACCOUNTMANAGERID = '".$user."' ".$s.") temp1) temp2 WHERE temp2.ROWNUM BETWEEN ".$start." AND ".$end);
 		}
 		
 		return $query->result_array();
@@ -98,10 +98,10 @@
 	
 	function get_account($id)
 	{
-		$this->db->select ('*');
+		$this->db->select ('*, a1.ACCOUNTID'); // specifically asked for a1.ACCOUNTID because DL_ACCOUNT doesnt always have the account info
 		$this->db->from('ACCOUNT a1');
 		$this->db->join('DL_ACCOUNT a2', 'a1.ACCOUNTID = a2.ACCOUNTID', 'left outer');
-		$this->db->where("a1.ACCOUNTID = '".$id."'");
+		$this->db->where("a1.ACCOUNTID = '$id'");
 		$query = $this->db->get();
 //		$query = $this->db->get_where('ACCOUNT a1', array('a1.ACCOUNTID' => $id));
 		return $query->result(); 
